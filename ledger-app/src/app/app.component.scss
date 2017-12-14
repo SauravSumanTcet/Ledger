@@ -1,0 +1,10 @@
+.main{
+    display: flex;
+}
+.chatbot{
+    z-index: 1000;
+    // margin-left: 50px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+}

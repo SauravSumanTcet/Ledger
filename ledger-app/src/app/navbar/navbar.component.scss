@@ -1,0 +1,35 @@
+.navbar_a{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background: lightblue;
+    .left{
+        width: 30%;
+        h1{
+            margin: 0;
+            padding: 1px;
+            color: red;
+            width: fit-content;
+        }
+    }
+    .center{
+        width: 10%;
+    }
+    .right{
+        width: 60%;
+        display: flex;
+        .item{
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+            padding-top: 10px;
+        }
+        .item:hover{
+            color: green;
+            background: #ffffff;
+        }
+        .item_active{
+            background: green;
+        }
+    }
+}

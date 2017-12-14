@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>Particulars</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </tr>
+  <tr *ngFor="let i of data">
+    <td>{{i.particulars | uppercase}}</td>
+    <td>{{i.amount}}</td>
+    <td>{{i.date | date}}</td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" name="particulars" [(ngModel)]="newItem.particulars">
+    </td>
+    <td>
+      <input type="text" [(ngModel)]="newItem.amount" name="amount">
+    </td>
+    <td>
+      <input type="text" [(ngModel)]="newItem.date" name="date">
+    </td>
+    <td>
+      <button (click)="_dashboard.addItem(newItem)">Add</button>
+    </td>
+  </tr>
+</table>

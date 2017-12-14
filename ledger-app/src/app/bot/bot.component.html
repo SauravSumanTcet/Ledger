@@ -1,0 +1,61 @@
+<div class="chatwindow" (click)="closeChatWindow()" *ngIf="selected || chatWindow">
+  <div *ngFor="let message of (messages | async);let i=index;">
+    <br>{{index}}
+    <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot'}">
+      {{ message.content }}
+    </div>
+    <hr>
+  </div>
+</div>
+<div class="bot-container">
+  <input type="text" name="query" [(ngModel)]="query">
+  <div class="chatbot" *ngIf="query" (click)="sendMessage(query)">
+    <i class="fa fa-send fa-3x"></i>
+  </div>
+  <div class="chatbot" *ngIf="!query||query==''" (click)="toggleChatbot(selected);">
+    <i [ngClass]="{'selected':selected,'unselected':!selected}" class="fa fa-microphone fa-4x"></i>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="selected" style="height:300px;width:50%;background:rgba(0,0,0,0.8);color:#ffffff">
+  <div id="live-chat">
+    <div class="header-color">
+      <header class="clearfix">
+        <h4 class="chatbot">
+          <b>Vanessa</b>
+        </h4>
+        <i class="fa fa-chat"></i>
+      </header>
+    </div>
+    <div class="chat">
+      <div class="chat-history">
+        <div class="chat-message clearfix">
+          <div class="chat-message-content clearfix">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>
+          </div>
+          <div *ngFor="let message of messages | async">
+            <br>
+            <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot'}">
+              {{ message.content }}
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="user-query">
+        <form action="#" method="post">
+          <fieldset>
+            <div class="divititis">
+              <input #formValue placeholder="Your message" (keyup.enter)="sendMessage(formValue.value)" type="text">
+              <button (click)="startRecognition()" class="btn button-send btn-color">
+                <i class="fa fa-settings"></i>
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
