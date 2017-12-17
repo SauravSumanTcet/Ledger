@@ -1,16 +1,18 @@
 var userModel = require('./../models/user.model');
 
-var fetchUserData = function (res) {
+var fetchUserData = (res) => {
+    console.log("getAllData");
     userModel.find({}).exec()
-        .then(function (response) {
+        .then((response) => {
             res.send(response);
         })
-        .catch(function () {
+        .catch(() => {
             res.status(400).send("No data found");
         });
 };
 
-var addData = function (body, res) {
+var addData = (body, res) => {
+    console.log("adding");
     if (body) {
         var userModelObject = new userModel();
         for (var element in body) {
@@ -27,8 +29,32 @@ var addData = function (body, res) {
     }
 }
 
+var fetchUserDataById = (id, res) => {
+    console.log("findingById");
+    userModel.findById(id).then((response) => {
+        res.send(response);
+    });
+}
 
+var editData = (rowObj,res)=>{
+    console.log("editing");
+    userModel.findOneAndUpdate({_id:rowObj._id}, rowObj, {new: true}, (err, doc)=>{
+        if(err){
+            console.log("Something wrong when updating data!");
+        }
+        res.json(doc);
+    });
+}
+var deleteData = (id,res) => {
+    console.log("deleting");
+    userModel.findByIdAndRemove(id,(response)=>{
+        res.send(response);
+    });
+}
 module.exports = {
     fetchUserData: fetchUserData
+    , fetchUserDataById: fetchUserDataById
     , addData: addData
+    , editData: editData
+    , deleteData: deleteData
 };

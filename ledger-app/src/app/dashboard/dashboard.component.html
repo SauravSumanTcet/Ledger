@@ -4,10 +4,22 @@
     <th>Amount</th>
     <th>Date</th>
   </tr>
-  <tr *ngFor="let i of data">
-    <td>{{i.particulars | uppercase}}</td>
-    <td>{{i.amount}}</td>
-    <td>{{i.date | date}}</td>
+  <tr *ngFor="let rowObj of ledgerRows">
+    <ng-container *ngIf="rowObj">
+      <td>{{rowObj.particulars | uppercase}}</td>
+      <td>{{rowObj.amount}}</td>
+      <td>{{rowObj.date | date}}</td>
+      <td>
+        <button (click)="editItem(rowObj)">
+          <i class="fa fa-edit"></i>
+        </button>
+      </td>
+      <td>
+        <button (click)="deleteItem(rowObj)">
+          <i class="fa fa-trash-o"></i>
+        </button>
+      </td>
+    </ng-container>
   </tr>
   <tr>
     <td>
@@ -17,10 +29,11 @@
       <input type="text" [(ngModel)]="newItem.amount" name="amount">
     </td>
     <td>
-      <input type="text" [(ngModel)]="newItem.date" name="date">
+      <input type="date" [(ngModel)]="newItem.date" name="date">
     </td>
     <td>
-      <button (click)="_dashboard.addItem(newItem)">Add</button>
+      <button (click)="addItem(newItem)">Add</button>
     </td>
   </tr>
 </table>
+<app-edit-modal></app-edit-modal>

@@ -1,0 +1,10 @@
+<div *ngIf="editModalStatus" class="editModal">
+    <h2>Edit any field</h2>
+    <form #myForm (ngSubmit)="edit(myForm)">
+        <input type="text" [(ngModel)]="editData.particulars" placeholder="particulars" name="particulars" value="">
+        <input type="text" [(ngModel)]="editData.amount" placeholder="amount" name="amount" value="">
+        <input type="date" [(ngModel)]="editData.date" placeholder="date" name="date" value="">
+        <button type="submit">Edit</button>
+    </form>
+    <i class="fa fa-close" (click)="closeEdit()"></i>
+</div>

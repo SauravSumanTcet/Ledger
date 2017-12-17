@@ -64,7 +64,7 @@ export class BotComponent implements OnInit {
     const { webkitSpeechRecognition }: IWindow = <IWindow>window;
     this.recognition.continuous = false;
     this.recognition.interimResults = false;
-    this.recognition.lang = "en-GB";
+    this.recognition.lang = "en-US";
     this.recognition.start();
 
     this.recognition.onstart = (event) => {

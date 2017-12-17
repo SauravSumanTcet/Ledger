@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="bot-container">
-  <input type="text" name="query" [(ngModel)]="query">
+  <input type="text" placeholder="Add new row from here" name="query" [(ngModel)]="query">
   <div class="chatbot" *ngIf="query" (click)="sendMessage(query)">
     <i class="fa fa-send fa-3x"></i>
   </div>

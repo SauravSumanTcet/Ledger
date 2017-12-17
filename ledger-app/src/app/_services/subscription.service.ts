@@ -5,19 +5,9 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class SubscriptionService {
     constructor() { }
-    private subject = new Subject<any>();
-
-    sendMessage(message: string) {
-        console.log("setting transcript",message);
-        this.subject.next({ text: message });
+    editModalStatus = new Subject<any>();
+    editModalStream$ = this.editModalStatus.asObservable();
+    openEditModal(status,i?) {
+        this.editModalStatus.next({status:status,value:i});
     }
-
-    clearMessage() {
-        this.subject.next();
-    }
-
-    getMessage(): Observable<any> {
-        return this.subject.asObservable();
-    }
-
 }

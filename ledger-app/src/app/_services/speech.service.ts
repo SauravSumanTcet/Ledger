@@ -20,14 +20,15 @@ export class SpeechService {
     let wit_url = environment.witapi + query;
     this._http.fetchdata(wit_url).subscribe((data) => {
       let wit_response_processed = this.cfs.processWitResponse(data);
-      if (wit_response_processed) {
-        if (wit_response_processed['particulars'] && wit_response_processed['amount'] && wit_response_processed['date'])
-          this.dashboardService.addItem(wit_response_processed);
-        else
-          console.log("%c INCOMPLETE DATA TO FILL IN YOUR LEDGER PLS TRY AGAIN!!", "background:red;color:white;");
-      }
-      else
-        console.log("%c INCOMPLETE DATA TO FILL IN YOUR LEDGER PLS TRY AGAIN!!", "background:red;color:white;");
+      // if (wit_response_processed) {
+      //   if (wit_response_processed['particulars'] && wit_response_processed['amount'] && wit_response_processed['date']){
+      //     this.dashboardService.addItem(wit_response_processed);
+      //   }          
+      //   else
+      //     console.log("%c INCOMPLETE DATA TO FILL IN YOUR LEDGER PLS TRY AGAIN!!", "background:red;color:white;");
+      // }
+      // else
+      //   console.log("%c INCOMPLETE DATA TO FILL IN YOUR LEDGER PLS TRY AGAIN!!", "background:red;color:white;");
     });
   }
 

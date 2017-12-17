@@ -10,16 +10,20 @@ module.exports = function (app) {
     //     createUserdao.removeUser(req.params.id,res);
     // });
 
-    //Users
+    //Ledger
     app.get("/api/getUserData", function (req, res) {
-        console.log("Fetching data");
         userdao.fetchUserData(res);
+    });
+    app.get("/api/getUserDataById/:id",function(req,res){
+        userdao.fetchUserDataById(req.params.id,res);
     });
     app.post('/api/addData',function(req,res){
         userdao.addData(req.body,res);
     });
-
-    // app.get("/api/getUserDataByRole/:role",function(req,res){
-    //     userdao.fetchUserDataByRole(req.params.role,res);
-    // });
+    app.put('/api/editData',function(req,res){
+        userdao.editData(req.body,res);
+    });
+    app.delete('/api/deleteData/:id',function(req,res){
+        userdao.deleteData(req.params.id,res);
+    });
 }

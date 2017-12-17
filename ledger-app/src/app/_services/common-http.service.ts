@@ -1,39 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map'
 import 'rxjs/Rx';
 
 @Injectable()
 export class CommonHttpService {
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
   url: string = '';
   requestData: Object;
 
   fetchdata(url): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });    
-    if(url.includes('wit')){
-       headers = new Headers({
-        "Authorization": "Bearer Q2GW2IGCDKGT5KFPMFST66H56ULUF6OL"
-      });
+    let headers;
+    if (url.includes('wit')) {
+      headers = new HttpHeaders().set("Authorization", "Bearer Q2GW2IGCDKGT5KFPMFST66H56ULUF6OL");
     }
-    let options = new RequestOptions({ headers: headers });
-    return this.http.get(url, options)
-      .map((res: Response) => {
-        // If everything went fine, return the response        
-        return res.json();
-      })
+    return this.http.get(url, { headers });
   }
 
 
   postdata(url, requestData): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(url, requestData, options)
-      .map((res: Response) => {
-        // If everything went fine, return the response
-        return res.json();
-      })
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(url, requestData, { headers });
+  }
+
+  putdata(url, requestData): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put(url, requestData, { headers });
+  }
+
+  deletedata(url): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.delete(url, { headers });
   }
 }
